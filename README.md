@@ -16,7 +16,7 @@ High Energy Large Logarithms, a small-x resummation code
 | Architecture | Latest published |
 |--------------|------------------|
 | linux-amd64 (`linux-64`) | ✅ `3.1` |
-| linux-arm64 (`linux-aarch64`) | ❌ not published |
+| linux-arm64 (`linux-aarch64`) | ✅ `3.1` |
 
 _As of the last feedstock render; the badges above are live._
 
