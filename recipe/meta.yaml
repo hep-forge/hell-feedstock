@@ -26,8 +26,10 @@ requirements:
     - {{ compiler('gfortran') }}   # GNU Fortran compiler
     - {{ compiler('c') }}          # GNU C compiler
     - {{ compiler('cxx') }}        # GNU C++ compiler
-    
+    - {{ stdlib('c') }}
+
     - make                         # Make utility
+    - wget                         # build.sh fetches data tarballs; not preinstalled on macOS runners
 
   host:
     - gsl
