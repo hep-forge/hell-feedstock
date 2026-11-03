@@ -11,7 +11,9 @@ rm -rf HELL
 
 
 NPROC=$(nproc 2>/dev/null || sysctl -n hw.ncpu)
-make -j$NPROC
+# The Makefile hardcodes CC = g++ and FF = gfortran: on macOS there is no
+# bare gfortran, and on Linux they pick the runner's system compilers.
+make -j$NPROC CC="${CXX}" FF="${FC}"
 
 mkdir -p ${PREFIX}/lib
 cp -R libhell.a ${PREFIX}/lib
