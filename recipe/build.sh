@@ -13,7 +13,13 @@ rm -rf HELL
 NPROC=$(nproc 2>/dev/null || sysctl -n hw.ncpu)
 # The Makefile hardcodes CC = g++ and FF = gfortran: on macOS there is no
 # bare gfortran, and on Linux they pick the runner's system compilers.
-make -j$NPROC CC="${CXX}" FF="${FC}"
+# src/integration.cc calls std::terminate without <exception>; libc++ does
+# not pull it in through other headers.
+HELL_CC="${CXX}"
+if [[ "$(uname)" == "Darwin" ]]; then
+  HELL_CC="${CXX} -include exception"
+fi
+make -j$NPROC CC="${HELL_CC}" FF="${FC}"
 
 mkdir -p ${PREFIX}/lib
 cp -R libhell.a ${PREFIX}/lib
